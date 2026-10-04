@@ -119,6 +119,32 @@ small { font-size: .8rem; }
 .nav__apps svg { width: 14px; height: 14px; fill: currentColor; }
 .nav__apps:hover { color: var(--ink); background: var(--line-2); text-decoration: none; }
 @media (max-width: 520px) { .nav__apps { padding: 0 10px; } .nav__apps span { display: none; } }
+
+/* Oak Hill app: brand mark + the sync chip at the far right of its nav
+   (the chip is filled in by assets/oakhill.js: green = fresh, yellow = look at it) */
+.brand__mark.oh-mark { background: linear-gradient(135deg, #3F7A4A, #6FA55F); }
+.sync-chip {
+  margin-left: auto; flex: none; display: inline-flex; align-items: center; gap: 7px; height: 34px; padding: 0 13px;
+  border: 1px solid var(--line); border-radius: 999px; background: var(--card);
+  color: var(--ink-2); font-size: .84rem; font-weight: 600; white-space: nowrap;
+}
+.sync-chip:hover { text-decoration: none; filter: brightness(.97); }
+.sync-chip__dot { flex: none; width: 9px; height: 9px; border-radius: 50%; background: var(--ink-3); }
+.sync-chip__label::after { content: " \00b7"; }
+.sync-chip--ok   { background: #E4F2EA; border-color: #BFE0CD; color: #1F6B4E; }
+.sync-chip--ok .sync-chip__dot { background: #2F9E6B; }
+.sync-chip--warn { background: #FDF3D6; border-color: #F0D894; color: #7A5410; }
+.sync-chip--warn .sync-chip__dot { background: #E0A526; }
+@media (max-width: 520px) {
+  .sync-chip__label { display: none; }
+  /* make room for the chip: on phones the Oak Hill nav drops its letter mark
+     and keeps the app name to one line */
+  .nav__inner:has(.sync-chip) { gap: 12px; padding: 0 16px; }
+  .nav__inner:has(.sync-chip) .brand__mark { display: none; }
+  .nav__inner:has(.sync-chip) .brand { min-width: 0; font-size: 1rem; }
+  .nav__inner:has(.sync-chip) .brand > span { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .sync-chip { padding: 0 10px; }
+}
 .brand { display: flex; align-items: center; gap: 11px; font-family: var(--serif); font-weight: 600; font-size: 1.15rem; color: var(--ink); }
 .brand:hover { text-decoration: none; }
 .brand__mark {
